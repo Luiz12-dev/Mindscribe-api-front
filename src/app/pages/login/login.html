@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="container">
+  <h2>Acesso MindScribe</h2>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      [(ngModel)]="email"
+      placeholder="Digite seu e-mail"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="senha">Senha</label>
+    <input
+      type="password"
+      name="senha"
+      id="senha"
+      [(ngModel)]="password"
+      placeholder="Digite sua senha"
+    />
+  </div>
+
+  <button (click)="onLogin()">Entrar</button>
+</div>
