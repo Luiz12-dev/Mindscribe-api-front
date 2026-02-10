@@ -7,41 +7,63 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true, 
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
 export class Dashboard implements OnInit {
-
   notes: Note[] = [];
   newTitle = '';
   newContent = '';
 
-  constructor(private noteService: NoteService, private router: Router){}
+  constructor(
+    private noteService: NoteService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.carregarNotas();
   }
 
-  carregarNotas(){
+  carregarNotas() {
     this.noteService.getNotes().subscribe({
       next: (dados) => {
         this.notes = dados;
         console.log('Notas carregadas:', this.notes);
       },
-      error: (erro) => console.log('Erro ao carregar notas:', erro)
+      error: (erro) => console.log('Erro ao carregar notas:', erro),
     });
-
-
-  criarNota(){
-
   }
 
+  createNote() {
+    if (!this.newTitle.trim() || !this.newContent.trim()) {
+      alert('Preencha título e conteúdo');
+      return;
+    }
+
+    const novaNota = {
+      title: this.newTitle,
+      content: this.newContent,
+    };
+
+    this.noteService.createNote(novaNota).subscribe({
+      next: (notaCriada) => {
+        alert('Nota criada com sucesso!');
+        this.notes.push(notaCriada);
+
+        this.newContent = '';
+        this.newTitle = '';
+      },
+      error: (err) => {
+        console.error('Erro ao criar: ', err);
+        alert('Erro ao salvar Nota');
+      },
+    });
   }
 
-
-
-
-
+  logout() {
+    localStorage.removeItem('auth_token');
+    this.router.navigate(['/']);
+  }
 }
