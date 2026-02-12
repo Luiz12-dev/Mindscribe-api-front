@@ -62,6 +62,24 @@ export class Dashboard implements OnInit {
     });
   }
 
+  deleteNote(id: string | undefined) {
+    if (!id) {
+      return;
+    }
+    if (confirm('Tem certeza que deseja deletar essa nota ?')) {
+      this.noteService.deleteNote(id).subscribe({
+        next: () => {
+          this.notes = this.notes.filter((n) => n.id !== id);
+          alert('Nota excluida');
+        },
+        error: (err) => {
+          console.error('Erro ao excluir: ', err);
+          alert('Erro ao excluir nota');
+        },
+      });
+    }
+  }
+
   logout() {
     localStorage.removeItem('auth_token');
     this.router.navigate(['/']);
