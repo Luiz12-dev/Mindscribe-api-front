@@ -1,1 +1,54 @@
-<p>register works!</p>
+<main class="register-wrapper">
+  <section class="register-card">
+    <header class="card-header">
+      <h2>Junte-se ao MindScribe 🚀</h2>
+      <p>Guarde seus pensamentos com segurança</p>
+    </header>
+
+    <form (ngSubmit)="onSubmit()" class="register-form">
+      <div class="form-group">
+        <label for="username">Nome de Usuário</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          [(ngModel)]="form.username"
+          placeholder="Ex: LuizDev"
+          autocomplete="username"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Seu melhor E-mail</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          [(ngModel)]="form.email"
+          placeholder="exemplo@email.com"
+          autocomplete="email"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Crie uma senha</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          [(ngModel)]="form.password"
+          placeholder="Mínimo 6 caracteres"
+          autocomplete="new-password"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn-primary">CRIAR CONTA</button>
+    </form>
+    <footer class="card-footer">
+      <p>Já possui conta ? <a routerLink="/">Entrar agora</a></p>
+    </footer>
+  </section>
+</main>
