@@ -18,4 +18,8 @@ export class NoteService {
   createNote(note: Note): Observable<Note> {
     return this.http.post<Note>(this.apiUrl, note);
   }
+
+  deleteNote(noteId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${noteId}`);
+  }
 }
