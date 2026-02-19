@@ -1,27 +1,46 @@
-<div class="container">
-  <h2>Acesso MindScribe</h2>
+<main class="login-wrapper">
+  <section class="login-card">
+    <header>
+      <h2>Bem-vindo de volta !👋</h2>
+      <p>Acesse suas notas no MindsCribe.</p>
+    </header>
 
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input
-      type="email"
-      name="email"
-      id="email"
-      [(ngModel)]="email"
-      placeholder="Digite seu e-mail"
-    />
-  </div>
+    @if (errorMessage) {
+      <div class="error-alert">
+        {{ errorMessage }}
+      </div>
+    }
 
-  <div class="form-group">
-    <label for="senha">Senha</label>
-    <input
-      type="password"
-      name="senha"
-      id="senha"
-      [(ngModel)]="password"
-      placeholder="Digite sua senha"
-    />
-  </div>
+    <form (ngSubmit)="onLogin()" class="login-form">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          [(ngModel)]="credentials.email"
+          required
+          autocomplete="email"
+          placeholder="seu@email.com"
+        />
+      </div>
 
-  <button (click)="onLogin()">Entrar</button>
-</div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          [(ngModel)]="credentials.password"
+          autocomplete="current-password"
+          placeholder="Sua senha"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn-primary">ENTRAR</button>
+    </form>
+
+    <footer class="card-footer">Não tem conta ? <a routerLink="/register">Crie agora</a></footer>
+  </section>
+</main>
