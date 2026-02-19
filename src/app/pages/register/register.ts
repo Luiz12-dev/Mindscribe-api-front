@@ -3,7 +3,7 @@ import { Auth } from '../../services/auth';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-
+import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -18,14 +18,19 @@ export class Register {
     password: '',
   };
 
+  errorMessage: string = '';
+
   constructor(
     private auth: Auth,
     private router: Router,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   onSubmit() {
+    this.errorMessage = '';
+
     if (!this.form.username || !this.form.email || !this.form.password) {
-      alert('Preencha todos os campos');
+      this.errorMessage = 'Porfavor preencha todos os dados !';
       return;
     }
 
@@ -36,7 +41,16 @@ export class Register {
       },
       error: (err) => {
         console.error('Erro ao registrar: ', err);
-        alert('Erro ao criar conta. Tente outro email ou verifique os dados');
+
+        if (err.status === 401) {
+          this.errorMessage = 'Credenciais inválidas. Verifique seus dados.';
+        } else if (err.status === 409) {
+          this.errorMessage = 'Este email já está cadastrado.';
+        } else {
+          this.errorMessage = 'Erro ao registrar. Tente novamente.';
+        }
+
+        this.cdr.detectChanges(); // ou use uma das outras soluções
       },
     });
   }
