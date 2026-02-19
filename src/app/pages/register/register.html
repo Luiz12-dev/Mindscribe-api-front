@@ -5,6 +5,12 @@
       <p>Guarde seus pensamentos com segurança</p>
     </header>
 
+    @if (errorMessage) {
+      <div class="error-alert">
+        {{ errorMessage }}
+      </div>
+    }
+
     <form (ngSubmit)="onSubmit()" class="register-form">
       <div class="form-group">
         <label for="username">Nome de Usuário</label>
