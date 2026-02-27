@@ -1,0 +1,229 @@
+.home-dashboard-container {
+  background-color: #171717;
+  color: #e5e7eb;
+  padding: 40px 60px;
+  height: 100vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.dashboard-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.btn-customize {
+  background-color: transparent;
+  border: 1px solid #333;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  color: #a3a3a3;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-customize:hover {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.widgets-area {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.widgets-row {
+  display: flex;
+  gap: 30px;
+}
+
+.bottom-row {
+  margin-top: 10px;
+}
+
+.notes-widget {
+  flex: 2;
+}
+
+.scratch-pad-widget {
+  flex: 1;
+}
+
+.captured-widget {
+  flex: 1;
+  width: 100%;
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.widget-header h2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e5e7eb;
+  margin: 0;
+}
+
+.notes-content,
+.notes-carousel {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.empty-note-card,
+.dashboard-note-card {
+  background-color: #1c1c1c;
+  border-radius: 8px;
+  width: 220px;
+  height: 260px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.empty-note-card:hover,
+.dashboard-note-card:hover {
+  background-color: #262626;
+}
+
+.empty-note-card {
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.icon-circle-green {
+  background-color: #2ecc71;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.empty-note-card p {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0;
+}
+
+.notebook-name {
+  font-size: 11px;
+  color: #a3a3a3;
+  margin-bottom: 8px;
+}
+
+.note-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 auto 0;
+  color: #fff;
+}
+
+.note-date {
+  font-size: 12px;
+  color: #666;
+}
+
+.scratch-pad-container {
+  background-color: #3b3c25;
+  border-radius: 8px;
+  height: 260px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.scratch-pad-container textarea {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  color: #d1d5db;
+  font-size: 15px;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+  font-family: inherit;
+}
+
+.dropdown-arrow {
+  font-size: 12px;
+  color: #a3a3a3;
+  cursor: pointer;
+}
+
+.empty-state-box {
+  border: 1px solid #333;
+  background-color: transparent;
+  border-radius: 8px;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.empty-icon-orange {
+  background-color: #ff8c00;
+  width: 60px;
+  height: 60px;
+  border-radius: 50% 50% 0 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.empty-state-box p {
+  color: #e5e7eb;
+  margin: 0;
+  font-size: 14px;
+}
+
+.btn-clip {
+  background-color: transparent;
+  border: 1px solid #555;
+  color: #e5e7eb;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.btn-clip:hover {
+  background-color: #2a2a2a;
+}

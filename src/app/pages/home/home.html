@@ -1,0 +1,60 @@
+<div class="home-dashboard-container">
+  <header class="dashboard-header">
+    <h1>Home</h1>
+    <button class="btn-customize">✏️</button>
+  </header>
+
+  <main class="widgets-area">
+    <div class="widgets-row top-row">
+      <section class="widget notes-widget">
+        <header class="widget-header">
+          <h2>Notes</h2>
+        </header>
+
+        <div class="notes-content">
+          @if (notas.length === 0) {
+            <div class="empty-note-card">
+              <div class="icon-circle-green">
+                <span class="icon">📄</span>
+              </div>
+              <p>Create new note</p>
+            </div>
+          } @else {
+            <div class="notes-carousel">
+              @for (nota of notas; track nota.id) {
+                <div class="dashboard-note-card">
+                  <span class="notebook-name">First Notebook</span>
+                  <h3 class="note-title">{{ nota.title || 'Untitled' }}</h3>
+                  <span class="note-date">Hoje</span>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </section>
+
+      <section class="widget scratch-pad-widget">
+        <header class="widget-header">
+          <h2>Scratch pad</h2>
+        </header>
+        <div class="scratch-pad-container">
+          <textarea placeholder="Start writing..."></textarea>
+        </div>
+      </section>
+    </div>
+    <div class="widgets-row bottom-row">
+      <section class="widget captured-widget">
+        <header class="widget-header">
+          <h2>Recently captured</h2>
+          <span class="dropdown-arrow">Web clips ⌄</span>
+        </header>
+
+        <div class="empty-state-box">
+          <div class="empty-icon-orange">✂️</div>
+          <p>Save useful information from the web.</p>
+          <button class="btn-clip">Clip web content</button>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
