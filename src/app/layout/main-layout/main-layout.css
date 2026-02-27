@@ -1,0 +1,10 @@
+.app-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content-area {
+  flex: 1;
+  background-color: #171717;
+}
