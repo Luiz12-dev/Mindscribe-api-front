@@ -1,0 +1,13 @@
+<div class="sidebar-container">
+  <div class="navbar-top">
+    <nav class="search-wrapper">
+      <input type="text" placeholder="Search" (keyup)="onSearch($event)" />
+    </nav>
+    <div class="action-buttons">
+      <button class="btn-note" (click)="createNewNote()">Note+</button>
+      <button class="btn-icon" (click)="createChekList()">✓</button>
+      <button class="btn-icon" (click)="openCalendar()">📅</button>
+      <button class="btn-icon" (click)="openMoreOptions()">...</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+.sidebar-container {
+  background-color: #262626;
+
+  width: 260px;
+
+  /* Vh significa View Height e quando eu coloco 100, no caso significa
+  que pega toda a altura da tela*/
+  height: 100vh;
+
+  padding: 16px;
+
+  box-sizing: border-box;
+
+  color: #e5e7eb;
+}
+
+.search-wrapper {
+  background-color: #2a2a2a;
+
+  border-radius: 8px;
+
+  padding: 8px 12px;
+
+  margin-bottom: 20px;
+}
+
+.search-wrapper input {
+  background-color: transparent;
+  border: none;
+  color: white;
+  width: 100%;
+  outline: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.search-wrapper:hover {
+  background-color: #383838;
+}
+
+.btn-note {
+  background-color: #2ecc71;
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+.btn-note:hover {
+  background-color: #99e3a8;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-icon {
+  background-color: transparent;
+  color: #a3a3a3;
+  border: 1px solid #444;
+  border-radius: 50%;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+  background-color: #333;
+  color: #fff;
+  border-color: #666;
+}
