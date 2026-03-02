@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Note } from '../models/note.model';
 
 @Injectable({
@@ -9,7 +9,18 @@ import { Note } from '../models/note.model';
 export class NoteService {
   private apiUrl = 'http://localhost:8080/notes';
 
+  private editorAberto = new BehaviorSubject<boolean>(false);
+  public editorAberto$ = this.editorAberto.asObservable();
+
   constructor(private http: HttpClient) {}
+
+  abrirEditor() {
+    this.editorAberto.next(true);
+  }
+
+  fecharEditor() {
+    this.editorAberto.next(false);
+  }
 
   getNotes(): Observable<Note[]> {
     return this.http.get<Note[]>(this.apiUrl);
