@@ -32,4 +32,12 @@ export class Sidebar {
   openMoreOptions() {
     console.log('Ação: Abrir menu flutuante de mais opções');
   }
+
+  voltarDashboard() {
+    this.noteService.fecharEditor();
+  }
+
+  abrirEditor() {
+    this.noteService.abrirEditor();
+  }
 }

@@ -28,4 +28,12 @@ export class Home implements OnInit, OnDestroy {
       this.editorSub.unsubscribe();
     }
   }
+
+  voltarDashboard() {
+    this.noteService.fecharEditor();
+  }
+
+  abrirEditor() {
+    this.noteService.abrirEditor();
+  }
 }
