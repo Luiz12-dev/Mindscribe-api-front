@@ -44,13 +44,13 @@ export class Register {
 
         if (err.status === 401) {
           this.errorMessage = 'Credenciais inválidas. Verifique seus dados.';
-        } else if (err.status === 409) {
+        } else if (err.status === 400) {
           this.errorMessage = 'Este email já está cadastrado.';
         } else {
           this.errorMessage = 'Erro ao registrar. Tente novamente.';
         }
 
-        this.cdr.detectChanges(); // ou use uma das outras soluções
+        this.cdr.detectChanges();
       },
     });
   }
