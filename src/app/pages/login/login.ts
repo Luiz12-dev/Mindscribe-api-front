@@ -37,7 +37,7 @@ export class Login {
     this.auth.login(this.credentials).subscribe({
       next: () => {
         console.log('Login realizado com sucesso !');
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/home']);
       },
       error: (err: HttpErrorResponse) => {
         console.error('Erro ao fazer login: ', err);
