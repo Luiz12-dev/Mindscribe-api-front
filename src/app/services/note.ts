@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Note } from '../models/note.model';
 
 @Injectable({
@@ -12,6 +12,9 @@ export class NoteService {
   private editorAberto = new BehaviorSubject<boolean>(false);
   public editorAberto$ = this.editorAberto.asObservable();
 
+  private criarNotaTrigger = new Subject<void>();
+  public criarNotaTrigger$ = this.criarNotaTrigger.asObservable();
+
   constructor(private http: HttpClient) {}
 
   abrirEditor() {
@@ -20,6 +23,10 @@ export class NoteService {
 
   fecharEditor() {
     this.editorAberto.next(false);
+  }
+
+  solicitarCriacaoDeNota() {
+    this.criarNotaTrigger.next();
   }
 
   getNotes(): Observable<Note[]> {
