@@ -122,3 +122,13 @@
   width: 24px;
   text-align: center;
 }
+
+.btn-sair {
+  background-color: #2ecc71;
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
