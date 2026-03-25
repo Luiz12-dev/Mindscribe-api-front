@@ -109,7 +109,7 @@
 
 .empty-note-card:hover,
 .dashboard-note-card:hover {
-  background-color: #262626;
+  background-color: #2e2a2a;
 }
 
 .empty-note-card {
@@ -364,4 +364,94 @@
   resize: none;
   outline: none;
   font-family: inherit;
+}
+
+.notes-count {
+  font-size: 14px;
+  color: #a3a3a3;
+  margin-left: 8px;
+  font-weight: 400;
+}
+
+.editor-title::placeholder,
+.editor-content::placeholder {
+  color: #666666;
+}
+
+active-note {
+  border: 1px solid #4a5568 !important;
+  background-color: #1e1e1e;
+}
+
+.editor-breadcrumb-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.breadcrumb-path {
+  font-size: 13px;
+  color: #a3a3a3;
+  font-weight: 400;
+  margin-left: 10px;
+  flex: 1;
+}
+
+.btn-toggle-list,
+.btn-dots {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  color: #a3a3a3;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.btn-toggle-list:hover,
+.btn-dots:hover {
+  background-color: #333333;
+}
+
+.dots-dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  background-color: #1e1e1e;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  width: 160px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  overflow: hidden;
+}
+
+.dropdown-item {
+  padding: 10px 16px;
+  color: #e5e7eb;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #333333;
+}
+
+.delete-item {
+  color: #ef4444;
+}
+
+.delete-item:hover {
+  background-color: #401a1a;
+}
+
+.notes-list-hidden {
+  display: none !important;
 }

@@ -61,39 +61,86 @@
   </div>
 } @else {
   <div class="master-detail-container">
-    <aside class="notes-middle-column">
+    <aside class="notes-middle-column" [class.notes-list-hidden]="!(notesListVisible$ | async)">
       <header class="middle-header">
         <h2>Notes</h2>
       </header>
 
-      <div class="midlle-content">
-        @if (notas.length === 0) {
-          <div class="middle-empty-state">
-            <div class="big-green-icon">📝</div>
-            <h3>Create your first note</h3>
-            <p>
-              Click the <span class="text-green"> New Note</span> button in the sidebar to get
-              started.
-            </p>
-          </div>
-        } @else {
-          <div class="middle-notes-editor">
-            @for (nota of notas; track nota.id) {
-              <div class="list-note-card active-note">
-                <h4 class="list-title">{{ nota.title || 'Untitled' }}</h4>
-                <span class="list-time"> a few minutes ago</span>
-              </div>
-            }
-          </div>
-        }
+      <div class="middle-content">
+        <div class="middle-notes-list">
+          @for (nota of notas; track nota.id) {
+            <div
+              class="list-note-card"
+              [class.active-note]="notaAtual?.id === nota.id"
+              (click)="selecionarNota(nota)"
+            >
+              <h4 class="list-title">{{ nota.title || 'Untitled' }}</h4>
+              <span class="list-time">Just now</span>
+            </div>
+          }
+        </div>
       </div>
     </aside>
 
     <main class="editor-main-area">
-      <div class="editor-wrapper">
-        <input type="text" name="editor-title" placeholder="Title" />
-        <textarea name="editor-content" placeholder="Start writing..."></textarea>
-      </div>
+      @if (notaAtual) {
+        <div class="editor-wrapper">
+          <div class="editor-breadcrumb-header">
+            <button class="btn-toggle-list" (click)="toggleNotesList()">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 7L6 12L11 17"
+                  stroke="#a3a3a3"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M17 7L12 12L17 17"
+                  stroke="#a3a3a3"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+
+            <span class="breadcrumb-path">
+              First Notebook > {{ notaAtual.title || 'Untitled' }}
+            </span>
+
+            <button class="btn-dots" (click)="toggleDropdown($event)">•••</button>
+
+            @if (isDropdownOpen) {
+              <div class="dots-dropdown">
+                <div class="dropdown-item delete-item" (click)="deletarNotaDoDropdown()">
+                  Move to Trash
+                </div>
+              </div>
+            }
+          </div>
+
+          <input
+            type="text"
+            class="editor-title"
+            placeholder="Title"
+            [(ngModel)]="notaAtual.title"
+          />
+
+          <textarea
+            class="editor-content"
+            placeholder="Start writing..."
+            [(ngModel)]="notaAtual.content"
+            spellcheck="false"
+          ></textarea>
+        </div>
+      }
     </main>
   </div>
 }
