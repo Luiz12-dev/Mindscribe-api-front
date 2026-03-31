@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NoteService } from '../../services/note';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Note } from '../../models/note.model';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,8 @@ export class Home implements OnInit, OnDestroy {
 
   private editorSub!: Subscription;
   private triggerSub!: Subscription;
+  private typingSubject = new Subject<Note>();
+  private autoSaveSub!: Subscription;
   private notesListVisibleSubject = new BehaviorSubject<boolean>(true);
   notesListVisible$ = this.notesListVisibleSubject.asObservable();
 
@@ -38,6 +41,29 @@ export class Home implements OnInit, OnDestroy {
 
     this.triggerSub = this.noteService.criarNotaTrigger$.subscribe(() => {
       this.criarNovaNota();
+    });
+
+    this.autoSaveSub = this.typingSubject.pipe(debounceTime(1000)).subscribe((notaParaSalvar) => {
+      this.executarAutoSave(notaParaSalvar);
+    });
+  }
+
+  aoDigitar() {
+    if (this.notaAtual) {
+      this.typingSubject.next(this.notaAtual);
+    }
+  }
+
+  executarAutoSave(note: Note) {
+    if (!note.id) return;
+
+    this.noteService.updateNote(note.id, note).subscribe({
+      next: (notaAtualizada) => {
+        console.log(`Nota '${notaAtualizada.title}' salva na nuvem com sucesso! `);
+      },
+      error: (erro) => {
+        console.error('Erro ao atualizar nota automaticamente', erro);
+      },
     });
   }
 
@@ -116,6 +142,7 @@ export class Home implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.editorSub) this.editorSub.unsubscribe();
     if (this.triggerSub) this.triggerSub.unsubscribe();
+    if (this.autoSaveSub) this.autoSaveSub.unsubscribe();
   }
 
   voltarDashboard() {
@@ -124,5 +151,11 @@ export class Home implements OnInit, OnDestroy {
 
   abrirEditor() {
     this.noteService.abrirEditor();
+  }
+
+  abrirNota(notaSelecionada: Note) {
+    this.notaAtual = notaSelecionada;
+
+    this.abrirEditor();
   }
 }

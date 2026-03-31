@@ -40,4 +40,8 @@ export class NoteService {
   deleteNote(noteId: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${noteId}`);
   }
+
+  updateNote(noteId: string, note: Note): Observable<Note> {
+    return this.http.put<Note>(`${this.apiUrl}/${noteId}`, note);
+  }
 }

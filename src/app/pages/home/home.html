@@ -23,7 +23,7 @@
             } @else {
               <div class="notes-carousel">
                 @for (nota of notas; track nota.id) {
-                  <div class="dashboard-note-card">
+                  <div class="dashboard-note-card" (click)="abrirNota(nota)">
                     <span class="notebook-name">First Notebook</span>
                     <h3 class="note-title">{{ nota.title || 'Untitled' }}</h3>
                     <span class="note-date">Hoje</span>
@@ -131,6 +131,7 @@
             class="editor-title"
             placeholder="Title"
             [(ngModel)]="notaAtual.title"
+            (ngModelChange)="aoDigitar()"
           />
 
           <textarea
@@ -138,6 +139,7 @@
             placeholder="Start writing..."
             [(ngModel)]="notaAtual.content"
             spellcheck="false"
+            (ngModelChange)="aoDigitar()"
           ></textarea>
         </div>
       }

@@ -17,12 +17,6 @@ export class Auth {
   }
 
   login(Credentials: any) {
-    return this.http.post<any>(this.loginUrl, Credentials).pipe(
-      tap((response) => {
-        if (response.token) {
-          localStorage.setItem('auth_token', response.token);
-        }
-      }),
-    );
+    return this.http.post<any>(this.loginUrl, Credentials);
   }
 }

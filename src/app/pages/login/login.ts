@@ -35,8 +35,10 @@ export class Login {
     }
 
     this.auth.login(this.credentials).subscribe({
-      next: () => {
-        console.log('Login realizado com sucesso !');
+      next: (resposta) => {
+        console.log('Resposta do Spring Boot:', resposta);
+
+        localStorage.setItem('auth_token', resposta.token);
         this.router.navigate(['/home']);
       },
       error: (err: HttpErrorResponse) => {
