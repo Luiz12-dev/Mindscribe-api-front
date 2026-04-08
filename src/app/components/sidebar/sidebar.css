@@ -1,27 +1,62 @@
 .sidebar-container {
-  background-color: #262626;
-
+  background-color: #1e1e1e;
   width: 260px;
-
   height: 100vh;
-
   padding: 16px;
-
   box-sizing: border-box;
-
   color: #e5e7eb;
-
-  border-right: 1px solid #353535;
+  border-right: 1px solid #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  flex-shrink: 0;
 }
+
+.navbar-top {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  margin-bottom: 20px;
+}
+
+.brand-icon {
+  font-size: 20px;
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+
 
 .search-wrapper {
   background-color: #2a2a2a;
-
   border-radius: 8px;
-
   padding: 8px 12px;
-
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.search-wrapper:hover {
+  background-color: #333;
+}
+
+.search-icon {
+  font-size: 14px;
+  opacity: 0.6;
 }
 
 .search-wrapper input {
@@ -30,62 +65,53 @@
   color: white;
   width: 100%;
   outline: none;
-
-  cursor: pointer;
-
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
+  font-family: inherit;
+  font-size: 14px;
 }
 
-.search-wrapper:hover {
-  background-color: #383838;
+.search-wrapper input::placeholder {
+  color: #888;
+}
+
+
+.action-buttons {
+  margin-bottom: 20px;
 }
 
 .btn-note {
+  width: 100%;
   background-color: #2ecc71;
   color: #000;
   border: none;
-  border-radius: 20px;
-  padding: 8px 16px;
+  border-radius: 8px;
+  padding: 10px 16px;
   font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
-
-  transition: background-color 0.2s ease;
-}
-
-.btn-note:hover {
-  background-color: #99e3a8;
-}
-
-.action-buttons {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.btn-icon {
-  background-color: transparent;
-  color: #a3a3a3;
-  border: 1px solid #444;
-  border-radius: 50%;
-
-  width: 36px;
-  height: 36px;
-
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  cursor: pointer;
-  transition: all 0.2s ease;
+  gap: 6px;
+  font-family: inherit;
 }
 
-.btn-icon:hover {
-  background-color: #333;
-  color: #fff;
-  border-color: #666;
+.btn-note:hover {
+  background-color: #27ae60;
+  transform: translateY(-1px);
 }
+
+.btn-note:active {
+  transform: translateY(0);
+}
+
+.btn-note span {
+  font-size: 18px;
+  font-weight: 700;
+}
+
 
 .nav-itens ul {
   list-style: none;
@@ -105,7 +131,7 @@
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 8px;
   transition:
     background-color 0.2s ease,
     color 0.2s ease;
@@ -123,12 +149,47 @@
   text-align: center;
 }
 
+
+.sidebar-bottom {
+  padding-top: 16px;
+  border-top: 1px solid #2a2a2a;
+}
+
 .btn-sair {
-  background-color: #2ecc71;
-  color: #000;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 16px;
-  font-weight: 600;
+  width: 100%;
+  background-color: transparent;
+  color: #a3a3a3;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 500;
+  font-size: 14px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn-sair:hover {
+  background-color: #2a2a2a;
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+
+@media (max-width: 768px) {
+  .sidebar-container {
+    width: 220px;
+    padding: 12px;
+  }
+
+  .brand-name {
+    font-size: 16px;
+  }
 }

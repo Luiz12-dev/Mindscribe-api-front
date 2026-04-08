@@ -1,60 +1,77 @@
 <main class="register-wrapper">
   <section class="register-card">
     <header class="card-header">
-      <h2>Junte-se ao MindScribe 🚀</h2>
-      <p>Guarde seus pensamentos com segurança</p>
+      <div class="brand-logo">📝</div>
+      <h2>Join MindScribe</h2>
+      <p>Keep your thoughts safe and organized.</p>
     </header>
 
     @if (errorMessage) {
       <div class="error-alert">
+        <span class="error-icon">⚠️</span>
         {{ errorMessage }}
+      </div>
+    }
+
+    @if (successMessage) {
+      <div class="success-alert">
+        <span class="success-icon">✅</span>
+        {{ successMessage }}
       </div>
     }
 
     <form (ngSubmit)="onSubmit()" class="register-form">
       <div class="form-group">
-        <label for="username">Nome de Usuário</label>
+        <label for="reg-username">Username</label>
         <input
           type="text"
           name="username"
-          id="username"
+          id="reg-username"
           [(ngModel)]="form.username"
-          placeholder="Ex: LuizDev"
+          placeholder="e.g. LuizDev"
           autocomplete="username"
           required
         />
       </div>
 
       <div class="form-group">
-        <label for="email">Seu melhor E-mail</label>
+        <label for="reg-email">E-mail</label>
         <input
           type="email"
           name="email"
-          id="email"
+          id="reg-email"
           [(ngModel)]="form.email"
-          placeholder="exemplo@email.com"
+          placeholder="your@email.com"
           autocomplete="email"
           required
         />
       </div>
 
       <div class="form-group">
-        <label for="password">Crie uma senha</label>
+        <label for="reg-password">Password</label>
         <input
           type="password"
           name="password"
-          id="password"
+          id="reg-password"
           [(ngModel)]="form.password"
-          placeholder="Mínimo 6 caracteres"
+          placeholder="At least 6 characters"
           autocomplete="new-password"
           required
         />
       </div>
 
-      <button type="submit" class="btn-primary">CRIAR CONTA</button>
+      <button type="submit" class="btn-primary" [disabled]="isLoading">
+        @if (isLoading) {
+          <span class="spinner"></span>
+          Creating account...
+        } @else {
+          Create account
+        }
+      </button>
     </form>
+
     <footer class="card-footer">
-      <p>Já possui conta ? <a routerLink="/">Entrar agora</a></p>
+      Already have an account? <a routerLink="/">Sign in</a>
     </footer>
   </section>
 </main>

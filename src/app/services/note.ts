@@ -15,7 +15,10 @@ export class NoteService {
   private criarNotaTrigger = new Subject<void>();
   public criarNotaTrigger$ = this.criarNotaTrigger.asObservable();
 
-  constructor(private http: HttpClient) {}
+  private searchTerm = new BehaviorSubject<string>('');
+  public searchTerm$ = this.searchTerm.asObservable();
+
+  constructor(private http: HttpClient) { }
 
   abrirEditor() {
     this.editorAberto.next(true);
@@ -27,6 +30,14 @@ export class NoteService {
 
   solicitarCriacaoDeNota() {
     this.criarNotaTrigger.next();
+  }
+
+  buscar(term: string) {
+    this.searchTerm.next(term);
+  }
+
+  limparBusca() {
+    this.searchTerm.next('');
   }
 
   getNotes(): Observable<Note[]> {

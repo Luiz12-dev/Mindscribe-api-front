@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NoteService } from '../../services/note';
 import { Router } from '@angular/router';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,31 +14,17 @@ export class Sidebar {
   constructor(
     private noteService: NoteService,
     private router: Router,
+    private auth: Auth,
   ) {}
 
   onSearch(event: Event) {
-    const valorDigitado = (event.target as HTMLInputElement).value;
-
-    console.log('Usuário está buscando por:', valorDigitado);
+    const termo = (event.target as HTMLInputElement).value;
+    this.noteService.buscar(termo);
   }
 
   createNewNote() {
     this.noteService.solicitarCriacaoDeNota();
-
     this.noteService.abrirEditor();
-    console.log('Sidebar enviou o comando: Abrir Editor!');
-  }
-
-  createChekList() {
-    console.log('Ação: Cria novo checklist rápido');
-  }
-
-  openCalendar() {
-    console.log('Ação: Abrir calendário');
-  }
-
-  openMoreOptions() {
-    console.log('Ação: Abrir menu flutuante de mais opções');
   }
 
   voltarDashboard() {
@@ -49,8 +36,7 @@ export class Sidebar {
   }
 
   voltarLogin() {
-    localStorage.removeItem('auth_token');
-
+    this.auth.logout();
     this.router.navigate(['/']);
   }
 }

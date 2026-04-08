@@ -1,23 +1,36 @@
 <div class="sidebar-container">
   <div class="navbar-top">
+    <div class="sidebar-brand">
+      <span class="brand-icon">📝</span>
+      <span class="brand-name">MindScribe</span>
+    </div>
+
     <nav class="search-wrapper">
+      <span class="search-icon">🔍</span>
       <input type="text" placeholder="Search" (keyup)="onSearch($event)" />
     </nav>
+
     <div class="action-buttons">
-      <button class="btn-note" (click)="createNewNote()">Note+</button>
-      <button class="btn-icon" (click)="createChekList()">✓</button>
-      <button class="btn-icon" (click)="openCalendar()">📅</button>
-      <button class="btn-icon" (click)="openMoreOptions()">...</button>
+      <button class="btn-note" (click)="createNewNote()">
+        <span>+</span> New Note
+      </button>
     </div>
 
     <nav class="nav-itens">
       <ul>
-        <li class="nav-item" (click)="voltarDashboard()"><span class="icon">🏠</span> Home</li>
-
-        <li class="nav-item" (click)="abrirEditor()"><span class="icon">📄</span> Notes</li>
-
-        <button class="btn-sair" (click)="voltarLogin()">SAIR</button>
+        <li class="nav-item" (click)="voltarDashboard()">
+          <span class="icon">🏠</span> Home
+        </li>
+        <li class="nav-item" (click)="abrirEditor()">
+          <span class="icon">📄</span> Notes
+        </li>
       </ul>
     </nav>
+  </div>
+
+  <div class="sidebar-bottom">
+    <button class="btn-sair" (click)="voltarLogin()">
+      <span>🚪</span> Log out
+    </button>
   </div>
 </div>

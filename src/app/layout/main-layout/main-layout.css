@@ -7,4 +7,11 @@
 .main-content-area {
   flex: 1;
   background-color: #171717;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: row;
+  }
 }
