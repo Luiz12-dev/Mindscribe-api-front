@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Auth } from '../../services/auth';
 import { Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class Login implements OnInit {
   constructor(
     private auth: Auth,
     private router: Router,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class Login implements OnInit {
     this.errorMessage = '';
 
     if (!this.credentials.email || !this.credentials.password) {
-      this.errorMessage = 'Por favor, preencha todos os campos.';
+      this.errorMessage = 'Please, fill all the fields';
       return;
     }
 
@@ -51,12 +53,14 @@ export class Login implements OnInit {
         this.isLoading = false;
 
         if (err.status === 400) {
-          this.errorMessage = 'Email ou senha em formato inválido.';
+          this.errorMessage = 'Email or password in a invalid format.';
         } else if (err.status === 401) {
-          this.errorMessage = 'Email ou senha incorretos.';
+          this.errorMessage = 'Email ou password incorrect.';
         } else {
-          this.errorMessage = 'Erro ao fazer login. Tente novamente.';
+          this.errorMessage = 'Error to login. Try again.';
         }
+
+        this.cdr.detectChanges();
       },
     });
   }

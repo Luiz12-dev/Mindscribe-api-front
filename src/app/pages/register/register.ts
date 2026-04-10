@@ -3,6 +3,8 @@ import { Auth } from '../../services/auth';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -25,6 +27,7 @@ export class Register implements OnInit {
   constructor(
     private auth: Auth,
     private router: Router,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -58,16 +61,26 @@ export class Register implements OnInit {
           this.router.navigate(['/']);
         }, 1500);
       },
-      error: (err) => {
+      error: (err: HttpErrorResponse) => {
         this.isLoading = false;
 
         if (err.status === 400) {
+          if (err.error && err.error.message) {
+            this.errorMessage = err.error.message;
+          } else if (typeof err.error === 'string' && err.error.trim() !== '') {
+            this.errorMessage = err.error;
+          } else {
+            this.errorMessage = 'Invalid data provided. Please check your inputs.';
+          }
+        } else if (err.status === 409) {
           this.errorMessage = 'This email is already registered.';
         } else if (err.status === 401) {
           this.errorMessage = 'Invalid credentials. Please check your data.';
         } else {
           this.errorMessage = 'Registration failed. Please try again.';
         }
+
+        this.cdr.detectChanges();
       },
     });
   }
